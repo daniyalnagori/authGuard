@@ -1,0 +1,76 @@
+
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div fxFlex="90">
+    <md-input-container style="width: 100%; font-size:16px;">
+      <input id="searchInput" mdInput [(ngModel)]="filterKeyword" placeholder="Search ..." />
+    </md-input-container>
+  </div>
+  <div fxFlex fxLayoutAlign="center center">
+    <button id="getButton" md-raised-button color="primary" class="btn btn-secondary" (click)="updateFilter()" [attr.aria-label]="Search">Search</button>
+  </div>
+</div>
+
+<br />
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <button md-button color="primary" class="btn btn-secondary" [attr.aria-label]="ShowAdvanced" (click)="isShowAdvancedFilters = !isShowAdvancedFilters"> {{ isShowAdvancedFilters ? "Hide Advanced Filters" : "Show Advanced Filters" }}</button>
+</div>
+
+<br />
+
+<div *ngIf="isShowAdvancedFilters" id="showAdvanceFilter">
+  <md-card >
+    <md-card-title style="text-align:center;"><span style="border-bottom:3px groove red; padding: 0px 10px 5px 10px; text-transform:uppercase;">FILTER OPTIONS</span></md-card-title>
+    <md-card-content>
+      <div fxLayout="row" fxLayoutAlign="center start" id="showAdvanceFilter-item">
+    <div fxFlex="60">
+      <md-select fxFlex="90" id="fieldSelect" [(ngModel)]="filterValue.filterField" [ngModelOptions]="{standalone: true}">
+        <md-option *ngFor="let opt of fieldFilterModel" [value]="opt.value">{{ opt.display }}</md-option>
+      </md-select>
+    </div>
+    <div fxFlex="60">
+      <md-select fxFlex="100" id="typeSelect" [(ngModel)]="filterValue.filterType" [ngModelOptions]="{standalone: true}">
+        <md-option *ngFor="let opt of filterType" [value]="opt.value">{{ opt.display }}</md-option>
+      </md-select>
+    </div>
+  </div>
+
+  <div>
+    <ng-content select="[tableToInject]"></ng-content>
+  </div>
+
+  <div fxLayout="column" id="showAdvanceFilter-item">
+    <div>
+      <md-input-container style="width: 100%">
+        <input mdInput [(ngModel)]="query.filter" placeholder="filter string" />
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-input-container style="width: 100%">
+        <input mdInput [(ngModel)]="query.orderBy" placeholder="orderBy" class="form-control" />
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-input-container style="width: 100%">
+        <input mdInput id="recordsPerPageInput" [(ngModel)]="query.top" placeholder="top" type="number" class="form-control" />
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-input-container style="width: 100%">
+        <input mdInput [(ngModel)]="query.skip" placeholder="skip" type="number" class="form-control" />
+      </md-input-container>
+    </div>
+  </div>
+
+  </md-card-content>
+</md-card>
+  
+
+</div>
+
+
+
+<!-- NinjaCodeGen.com by DNAfor.NET -->
