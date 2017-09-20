@@ -3,13 +3,13 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './adminLayout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { LoginGuard} from './login.guard';
+import { AuthGuard } from './authguard';
 
 export const AppRoutes: Routes = [
   {
       path: '',
       component: AdminLayoutComponent,
-      canActivate:[LoginGuard],
+      canActivate:[AuthGuard],
       children: 
       [
         {
@@ -21,7 +21,7 @@ export const AppRoutes: Routes = [
  {
       path: 'user',
       component: UserComponent,
-      canActivate:[LoginGuard]
+      canActivate:[AuthGuard]
   },
     {
       path: 'login',

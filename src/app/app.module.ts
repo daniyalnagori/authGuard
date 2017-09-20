@@ -4,12 +4,12 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-import { LoginService} from './login.service';
-import { LoginGuard} from './login.guard';
+import { LoginService } from './login.service';
+import { AuthGuard } from './authguard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule,MdButtonModule,MdMenuModule,MdToolbarModule,MdIconModule,MdCardModule,MdListModule,MdInputModule,MdGridListModule,MdSelectModule} from '@angular/material';
+import { MaterialModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdIconModule, MdCardModule, MdListModule, MdInputModule, MdGridListModule, MdSelectModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './adminLayout/admin-layout.component';
 import { AppRoutes } from './app.routing';
@@ -43,7 +43,7 @@ export function createTranslateLoader(http: Http) {
       useFactory: (createTranslateLoader),
       deps: [Http]
     }),
-     MdButtonModule,
+    MdButtonModule,
     MdMenuModule,
     MdToolbarModule,
     MdIconModule,
@@ -56,7 +56,7 @@ export function createTranslateLoader(http: Http) {
     MdSelectModule,
     MaterialModule
   ],
-  providers: [MenuItems,LoginService,LoginGuard],
+  providers: [MenuItems, LoginService, AuthGuard],
   entryComponents: [],
   bootstrap: [AppComponent]
 })
